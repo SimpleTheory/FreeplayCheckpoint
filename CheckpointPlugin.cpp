@@ -118,7 +118,7 @@ void CheckpointPlugin::onLoad()
 
 	boolvar("cpt_mirror_loads", "If set, randomly mirror when loading checkpoints", &mirrorLoads);
 	boolvar("cpt_randomize_loads", "If set, load a random checkpoint instead of the latest", &randomizeLoads);
-	boolvar("cpt_disable_delete_on_dpad_down", "If set, the checkpoint button (e.g. D-pad down) will not delete checkpoints", &disableDeleteOnDpadDown);
+	boolvar("cpt_disable_delete_on_dpad_down", "If set, the checkpoint binding (cpt_do_checkpoint) will not delete checkpoints", &disableDeleteOnDpadDown);
 
 	cvarManager->registerCvar("cpt_allow_delete_all", "0", "Enables the delete all button", false, true, 0, true, 1, false);
 
@@ -508,7 +508,7 @@ void CheckpointPlugin::doCheckpoint(std::vector<std::string> command) {
 		hasQuickCheckpoint = false;
 		if (rewindState.atCheckpoint) { // Delete the current checkpoint we are at.
 			if (disableDeleteOnDpadDown) {
-				// Deleting via the checkpoint button (e.g. D-pad down) is disabled.
+				// Deleting via the checkpoint binding (cpt_do_checkpoint) is disabled.
 				rewindState.deleting = false;
 				log("at cpt; delete disabled by cpt_disable_delete_on_dpad_down");
 				return;
